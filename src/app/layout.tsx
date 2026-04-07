@@ -1,24 +1,28 @@
 // src/app/layout.tsx
-import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { ThemeProvider } from "@/components/ThemeProvider";
+import Navbar from "@/components/Navbar";
+import AIAssistant from "@/components/AIAssistant"; // Importamos el robot
 import "./globals.css";
+import { Inter } from "next/font/google";
 
 const inter = Inter({ subsets: ["latin"] });
 
-export const metadata: Metadata = {
-    title: "Corbyte Solutions | Innovación Tecnológica",
-    description: "Expertos en Deep Learning, ERP y Desarrollo Web",
-};
-
-export default function RootLayout({
-    children,
-}: {
-    children: React.ReactNode;
-}) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
     return (
-        <html lang="es">
-            <body className={`${inter.className} bg-slate-950 antialiased`}>
-                {children}
+        <html lang="es" suppressHydrationWarning>
+            <body className={`${inter.className} bg-white dark:bg-black transition-colors duration-500`}>
+                <ThemeProvider>
+                    {/* El Navbar se mantiene arriba */}
+                    <Navbar />
+
+                    {/* El Robot asistente que te sigue por toda la web */}
+                    <AIAssistant />
+
+                    {/* El contenido de tus páginas (Hero, Proyectos, etc.) */}
+                    <main>
+                        {children}
+                    </main>
+                </ThemeProvider>
             </body>
         </html>
     );

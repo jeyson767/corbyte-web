@@ -1,6 +1,78 @@
 /* src/app/globals.css */
 @import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
+/* 1. Definición de variables globales */
 :root {
-    color-scheme: dark;
+    --background: #ffffff;
+    --foreground: #000000;
+}
+
+/* 2. Variables para el Modo Negro */
+.dark {
+    --background: #000000;
+    --foreground: #ffffff;
+}
+
+/* 3. Configuración del Body */
+body {
+    background-color: var(--background);
+    color: var(--foreground);
+    /* Transición suave para que el cambio de blanco a negro no sea brusco */
+    transition: background-color 0.5s ease, color 0.5s ease;
+    min-height: 100vh;
+    /* Suavizado de fuentes estilo Apple */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* 4. Tipografía Estilo Lujo (Tom Ford / Apple) */
+h1,
+h2,
+h3,
+a {
+    /* Letras un poco más juntas para un look premium */
+    letter-spacing: -0.04em;
+}
+
+/* Espaciado extra para los subtítulos (Luxury style) */
+.tracking-luxury {
+    letter-spacing: 0.4em;
+}
+
+/* 5. Utilidades de Scroll */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Ocultar barra de scroll pero mantener funcionalidad (Opcional, muy Apple) */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #333;
+    border-radius: 10px;
+}
+
+@keyframes flicker {
+
+    0%,
+    100% {
+        opacity: 0.2;
+    }
+
+    50% {
+        opacity: 0.8;
+    }
+}
+
+.animate-flicker {
+    animation: flicker 3s infinite ease-in-out;
 }
